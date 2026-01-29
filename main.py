@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv() 
 app = FastAPI()
-
+apikey=os.getenv("AGROMAS_API_KEY")
 
 
 def funcion_connect():
@@ -29,7 +29,7 @@ def funcion_connect():
 
 @app.get("/")
 def raiz():
-    return {"/carga_data"}
+    return {apikey}
 
 
 
@@ -109,3 +109,4 @@ def leer_datos(fecha: str, formato: int, nombre_tabla_db: str):
     except Exception as e:
         # Devuelve error como mensaje
         raise HTTPException(status_code=500, detail=f"❌ Error al obtener o insertar datos: {e}")
+
